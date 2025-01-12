@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  qr_code: MyString
+  category: MyString
+  start_date: 2025-01-11 22:54:02
+  user: one
+
+two:
+  title: MyString
+  description: MyText
+  qr_code: MyString
+  category: MyString
+  start_date: 2025-01-11 22:54:02
+  user: two
