@@ -3,11 +3,11 @@
 one:
   url: MyString
   caption: MyText
-  event: one
+  album: one
   user: one
 
 two:
   url: MyString
   caption: MyText
-  event: two
+  album: two
   user: two

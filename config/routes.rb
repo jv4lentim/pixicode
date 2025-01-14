@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :albums
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,5 +13,12 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "events#index"
+  root 'dashboard/home#index'
+
+  namespace :dashboard, path: "dashboard" do
+    get "/", to: "home#index", as: :home
+    resources :albums, only: [:index, :show] do
+      resources :photos, only: [:create, :destroy]
+    end
+  end
 end
