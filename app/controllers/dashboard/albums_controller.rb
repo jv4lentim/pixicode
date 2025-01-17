@@ -12,7 +12,7 @@ module Dashboard
     def show
       @album = Album.includes(:photos).where(user_id: Current.user.id, id: params[:id]).first
       @photos = @album.photos
-      @photo = @album.photos.build
+      @photo = Photo.new
     end
 
     # GET /albums/new

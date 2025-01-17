@@ -17,6 +17,7 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -33,7 +34,7 @@
     <div class="flex">
       <!-- Sidebar -->
       <aside
-        class="h-[calc(100vh-4rem)] border-r bg-gray-50 transition-all duration-300 w-[240px]">
+        class="min-h-screen border-r bg-gray-50 transition-all duration-300 w-[240px]">
         <nav class="flex flex-col gap-2 p-4">
           <%= link_to dashboard_home_path, class: "flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100" do %>
             <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -61,8 +62,8 @@
 
       <!-- Main Content -->
       <main class="flex-1">
-        <div class="h-[calc(100vh-4rem)] overflow-auto">
-          <div class="container mx-auto py-6">
+        <div class="h-[calc(100vh-4rem)]">
+          <div class="py-6 pl-6">
             <%= yield %>
           </div>
         </div>
