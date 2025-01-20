@@ -3,7 +3,7 @@ class AlbumsController < ApplicationController
 
   # GET /albums or /albums.json
   def index
-    @albums = Album.all
+    @albums = Album.includes(:photos).all
   end
 
   # GET /albums/1 or /albums/1.json
@@ -21,13 +21,11 @@ class AlbumsController < ApplicationController
 
   # POST /albums or /albums.json
   def create
-    @album = Album.new(album_params)
-
-    @album.user = Current.user
+    @album = CreateAlbum.new(album_params, Current.user.id, method(:show_album_path)).call
 
     respond_to do |format|
-      if @album.save
-        format.html { redirect_to @album, notice: "album was successfully created." }
+      if @album
+        format.html { redirect_to show_album_path(@album.unique_id), notice: "album was successfully created." }
         format.json { render :show, status: :created, location: @album }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +38,7 @@ class AlbumsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
-        format.html { redirect_to @album, notice: "album was successfully updated." }
+        format.html { redirect_to show_album_path(@album.unique_id), notice: "album was successfully updated." }
         format.json { render :show, status: :ok, location: @album }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,7 +60,7 @@ class AlbumsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
-      @album = Album.find(params.expect(:id))
+      @album = Album.find_by(unique_id: params[:unique_id])
     end
 
     # Only allow a list of trusted parameters through.

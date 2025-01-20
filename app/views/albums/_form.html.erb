@@ -1,4 +1,4 @@
-<%= form_with(model: album, class: "contents") do |form| %>
+<%= form_with(model: album, url: album.persisted? ? update_album_path(album.unique_id) : albums_path, class: "contents") do |form| %>
   <% if album.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
       <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>

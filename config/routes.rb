@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :albums
+  resources :albums, except: [:show, :destroy, :update, :edit]
+  get '/albums/:unique_id', to: 'albums#show', as: :show_album
+  delete '/albums/:unique_id', to: 'albums#destroy', as: :destroy_album
+  get '/albums/:unique_id/edit', to: 'albums#edit', as: :edit_album
+  patch '/albums/:unique_id', to: 'albums#update', as: :update_album
+
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

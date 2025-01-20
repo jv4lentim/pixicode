@@ -42,10 +42,10 @@
     <%= form.submit "Upload", class: "btn btn-primary" %>
   <% end %>
 
-  <%= link_to "Editar", edit_album_path(@album), class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <%= link_to "Editar", edit_album_path(@album.unique_id), class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
   <%= link_to "Voltar", dashboard_albums_path, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
 
   <div class="inline-block ml-2">
-    <%= button_to "Apagar", @album, method: :delete, class: "mt-2 rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium" %>
+    <%= button_to "Apagar", destroy_album_path(@album.unique_id), method: :delete, class: "mt-2 rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium" %>
   </div>
 </div>

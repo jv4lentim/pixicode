@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_14_013830) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_17_130009) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,12 +45,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_14_013830) do
   create_table "albums", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "qr_code"
     t.string "category"
     t.datetime "start_date"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "unique_id", null: false
+    t.index ["unique_id"], name: "index_albums_on_unique_id", unique: true
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
@@ -84,6 +85,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_14_013830) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "albums", "users"
-  add_foreign_key "photos", "albums"
+  add_foreign_key "photos", "albums", on_delete: :cascade
   add_foreign_key "sessions", "users"
 end
