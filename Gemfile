@@ -43,7 +43,7 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
 # AWS SDK S3 for Cloudflare
-gem 'aws-sdk-s3', '~> 1.175'
+gem 'aws-sdk-s3', '~> 1.179'
 
 # Sqids
 gem 'sqids'
